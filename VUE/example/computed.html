@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed Option计算选择</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>computed Option计算选择</h1>
+    <hr>
+    <div id="app">
+      <p>{{newPrice}}</p>
+      <ul>
+          <li v-for="item in reversNews">{{item.title}}-{{item.date}}</li>
+      </ul>
+
+    </div>
+
+    <script type="text/javascript">
+        var newsList=[
+        {title:'微视频｜青春的颜色，叫奋斗！',date:'2019/5/1'  },
+        {title:'习近平：我的工作是为人民服务 很累但很愉快',date:'2019/5/2'  },
+        {title:'劳动者，很美  先进事迹发布  一带一路 ',date:'2019/5/3'  },
+        {title:'中国青年人的志气 ',date:'2019/5/4'  },
+      
+        ]
+        var app=new Vue
+        ({
+            el:'#app',
+            data:{
+                price:100,
+                newsList:newsList
+            },
+            //用来改造输出的computed 
+            computed:{
+                newPrice:function(){
+                    return this.price='$'+this.price+'元';
+                },
+                reversNews:function(){
+                    return this.newsList.reverse();
+                }
+            }
+         } )
+        </script>
+
+    
+</body>
+</html>

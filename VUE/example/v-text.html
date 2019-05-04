@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-text&v-html 实例</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-text&v-html 实例</h1>
+    <hr>
+    <div id="app">
+        <!--绑定后，加载不出来的时候也显示message中的东西，而不是显示{{message}}-->
+     <span>{{message}}</span>=<span v-text="message"></span><br />
+    <!--保证页面安全时才能用这个v-html包，在生产环境中动态渲染HTML是非常危险的，因为容易导致XSS攻击,其直接将html标签输出了.永远不要在用户提交和可操作的网页上使用-->
+     <span v-html="dodo">{{dodo}}</span>
+    </div>
+
+    <script type="text/javascript">
+        var app=new Vue
+        ({
+            el:'#app',
+            data:{
+                message:'hello vue',
+                dodo:'<h2>hello vue</h2>'
+            }
+         } )
+        </script>
+
+    
+</body>
+</html>

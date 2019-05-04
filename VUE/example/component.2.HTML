@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Component组件 props属性</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Component组件 props属性</h1>
+    <hr>
+    <div id="app">
+        <panda from-here="China"></panda>
+       <panda v-bind:here="message"></panda>
+    </div>
+
+    <script type="text/javascript">
+    //注册全局组件
+    Vue.component('lxy',{
+        template:`<div style="color:blue">我是全局的lxy组件</div>`})
+        var app=new Vue
+        ({
+            el:'#app',
+            data:{
+                message:'China'
+            },
+           //局部,可定义多个组件，全局只可定义一个
+           components:{
+               //是个名字，必须写字符串
+               "panda":{
+                template:`<div style="color:grey">Panda from{{here}}</div>`,
+                props:['here']
+               }
+           }
+         } )
+        </script>
+
+    
+</body>
+</html>

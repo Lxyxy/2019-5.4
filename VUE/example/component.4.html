@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Component 标签</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Component 标签</h1>
+    <hr>
+    <div id="app">
+     <component v-bind:is="who"></component>
+     <component v-bind:is="whoo"></component>
+     <component v-bind:is="whooo"></component>
+
+     <button @click="changeConponent">changeConponent</button>
+    </div>
+
+    <script type="text/javascript">
+     var ComponentA={
+        template:`<div style="color:red;">I'm componentA</div>`
+    } 
+      var ComponentB={
+        template:`<div style="color:blue;">I'm componentB</div>`
+    }
+       var ComponentC={
+        template:`<div style="color:yellow;">I'm componentC</div>`
+    }
+    //不可用小写
+    /*var componentA={
+        template:`<div style="color:red;">I'm componentA</div>`
+    } 
+      var componentB={
+        template:`<div style="color:blue;">I'm componentB</div>`
+    }
+       var componentC={
+        template:`<div style="color:yellow;">I'm componentC</div>`
+    }*/
+
+        var app=new Vue
+        ({
+            el:'#app',
+            data:{
+                who:'componentA',
+                whoo:'componentB',
+                whooo:'componentC'
+            },
+            components:{
+           "componentA":ComponentA,
+           "componentB":ComponentB,
+           "componentC":ComponentC,
+           },
+           methods:{
+               changeConponent:function(){
+                   if(this.who=="componentA"){
+                       this.who="componentB";
+                   }
+                   else if(this.whoo=="componentB"){
+                    this.whoo="componentC";
+                   }
+                   else{
+                       this.whooo="componentA";
+                   }
+               }
+           }
+         } )
+        </script>
+
+    
+</body>
+</html>

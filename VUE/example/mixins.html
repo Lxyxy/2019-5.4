@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mixins混入选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>mixins混入选项</h1>
+    <hr>
+    <div id="app">
+      {{num}}
+      <p><button @click="add">add</button></p>
+    </div>
+
+    <script type="text/javascript">
+    //构造器里很成熟了，不想去修改，但是又要增加功能，可以用mixins
+    var addConsole={
+        //生命周期updata
+        updated:function(){
+            console.log('数据发生变化，变成了'+this.num);
+        }
+    }
+    //全局api的混入，用大写V的Vue，
+    //顺序：全局混入-混入-原生
+    Vue.mixin({
+        updated:function(){
+            console.log('我是全局的混入')
+        }
+    });
+        var app=new Vue
+        ({
+            el:'#app',
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    this.num++;
+                }
+            },
+            //通过与原生的对比，可以看到混入的mixins先执行
+         updated:function(){
+                console.log('我是原声的update');
+            },
+            //混入完成
+            mixins:[addConsole]
+         } )
+        </script>
+
+    
+</body>
+</html>

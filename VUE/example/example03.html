@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实例事件</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>实例事件</h1>
+    <hr>
+    <div id="app">
+      {{num}}
+      <P><button @click="add">add</button></P>
+    </div>
+
+   <P> <button onclick="reduce()">reduce</button></P>
+   <P> <button onclick="reduceOnce()">reduceOnce</button></P>
+   <P> <button onclick="off()">off</button></P>
+
+    <script type="text/javascript">
+        var app=new Vue
+        ({
+            el:'#app',
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    this.num++;
+                }
+            }
+         } );
+
+         app.$on("reduce",function(){
+             console.log("执行了reduce方法");
+             this.num--;
+         });
+         //只调用一次
+         app.$once('reduceOnce',function(){
+             console.log('只执行一次的方法');
+             this.num--;
+         });
+         function reduce(){
+             app.$emit('reduce');
+         }
+         function reduceOnce(){
+             app.$emit('reduceOnce');
+         }
+         //关闭
+         function off(){
+             app.$off('reduce');
+         }
+        </script>
+
+    
+</body>
+</html>

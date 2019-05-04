@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>propData option</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>propData option</h1>
+    <hr>
+   <!--扩展头部标签-->
+    <header></header>
+
+
+    <script type="text/javascript">
+    var header_a=Vue.extend({
+        template:`<p>{{message}}-{{a}}</p>`,
+        data:function(){
+            return{
+                message:"Hello,I am header"
+            }
+        },
+        props:['a']
+    });
+      //挂载,用类名+‘.’
+      //{propsData:{a:12}}传值，用的少，在template中插值
+      new header_a({propsData:{a:12}}).$mount('header');
+        </script>
+
+    
+</body>
+</html>
